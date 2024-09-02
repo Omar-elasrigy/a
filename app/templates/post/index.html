@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+This is The Home Page 
+{%endblock%}
+
+
+{% block main %}
+<div class="d-flex  justify-content-center mt-2 mb-2">
+<a href="{{url_for('post.create')}}"><button class="btn btn-dark m-auto">Create Post</button></a>
+</div>
+{% for p in posts %}
+<div class="card mt-3 ms-3 me-3 mb-3" style="width: 20rem; display:inline-block;">
+     <img class="card-img-top" src="{{ p.image_url }}" alt="{{ p.name }}" style=" height: 30rem;">
+          
+    <div class="card-body">
+      <h5 class="card-title">{{p.name}}</h5>
+      <h5 class="card-title"><label class="fs-bold">id: </label>{{p.id}}</h5>
+      <p class="card-text">{{p.description}}</p>
+      <a href="{{p.show_url}}" class="btn btn-dark">Show Details</a>
+      <a href="{{url_for ('post.edit',id=p.id)}}" class="btn btn-dark">Edit</a>
+      <a href="{{p.delete_url}}" class="btn btn-dark ">Delete</a>
+    </div>
+  </div>
+  {% endfor %}
+{% endblock %}
